@@ -14,6 +14,7 @@
 		5D19AEF41E68820F002479F7 /* Receipts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5D19AEF21E68820F002479F7 /* Receipts.xcdatamodeld */; };
 		5D19AEF61E68820F002479F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D19AEF51E68820F002479F7 /* Assets.xcassets */; };
 		5D19AEF91E68820F002479F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D19AEF71E68820F002479F7 /* LaunchScreen.storyboard */; };
+		5D19AF021E6888EA002479F7 /* AddReceiptsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D19AF011E6888EA002479F7 /* AddReceiptsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,8 @@
 		5D19AEF51E68820F002479F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D19AEF81E68820F002479F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5D19AEFA1E68820F002479F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5D19AF001E6888EA002479F7 /* AddReceiptsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddReceiptsViewController.h; sourceTree = "<group>"; };
+		5D19AF011E6888EA002479F7 /* AddReceiptsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddReceiptsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +67,8 @@
 				5D19AEEA1E68820F002479F7 /* AppDelegate.m */,
 				5D19AEEC1E68820F002479F7 /* ViewController.h */,
 				5D19AEED1E68820F002479F7 /* ViewController.m */,
+				5D19AF001E6888EA002479F7 /* AddReceiptsViewController.h */,
+				5D19AF011E6888EA002479F7 /* AddReceiptsViewController.m */,
 				5D19AEEF1E68820F002479F7 /* Main.storyboard */,
 				5D19AEF51E68820F002479F7 /* Assets.xcassets */,
 				5D19AEF71E68820F002479F7 /* LaunchScreen.storyboard */,
@@ -155,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D19AEF41E68820F002479F7 /* Receipts.xcdatamodeld in Sources */,
+				5D19AF021E6888EA002479F7 /* AddReceiptsViewController.m in Sources */,
 				5D19AEEE1E68820F002479F7 /* ViewController.m in Sources */,
 				5D19AEEB1E68820F002479F7 /* AppDelegate.m in Sources */,
 				5D19AEE81E68820F002479F7 /* main.m in Sources */,
