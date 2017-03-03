@@ -14,6 +14,11 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *receiptDP;
 @property (weak, nonatomic) IBOutlet UITableView *addTableView;
 
+@property (nonatomic) NSMutableSet *selectedRows;
+
+@property (nonatomic) Receipt *receiptToAdd;
+@property (nonatomic) Tag *tagToAdd;
+
 
 @end
 
@@ -25,26 +30,34 @@ static NSString const *TagsIdentifier = @"tagCell";
 {
     [super viewDidLoad];
     self.coreDataManager = [CoreDataStuff sharedInstance];
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
+    
+    self.selectedRows = [[NSMutableSet alloc] init];
+    
+    
+
 }
 
 - (void)dismissKeyboard
 {
-    [self.noteTF resignFirstResponder];
+    [self.view endEditing:YES];
 }
 
 - (IBAction)addButtonPressed:(id)sender {
     
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Receipt" inManagedObjectContext:self.coreDataManager.managedObjectContext];
-    NSManagedObject *receiptObject = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self.coreDataManager.managedObjectContext];
+    self.receiptToAdd = [[Receipt alloc] initWithEntity:entity insertIntoManagedObjectContext:self.coreDataManager.managedObjectContext];
     
-    [receiptObject setValue:self.amountTF.text forKey:@"amount"];
-    [receiptObject setValue:self.noteTF.text forKey:@"note"];
-    [receiptObject setValue:self.receiptDP.date forKey:@"timeStamp"];
+    [self.receiptToAdd setValue:self.amountTF.text forKey:@"amount"];
+    [self.receiptToAdd setValue:self.noteTF.text forKey:@"note"];
+    [self.receiptToAdd setValue:self.receiptDP.date forKey:@"timeStamp"];
     
     [self.coreDataManager.managedObjectContext save:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -54,16 +67,47 @@ static NSString const *TagsIdentifier = @"tagCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.addTableView dequeueReusableCellWithIdentifier:@"tagCell" forIndexPath:indexPath];
-    
-   
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tagCell" forIndexPath:indexPath];
     Tag *thisTag = self.coreDataManager.fetchedTags[indexPath.row];
     
     cell.textLabel.text = thisTag.tagName;
-    R
+    
+    if ([self.selectedRows containsObject:thisTag]) {
+        
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        
+    } else {
+        
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
     return cell;
     
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    
+    Tag *thisTag = self.coreDataManager.fetchedTags[indexPath.row];
+    
+    if ([self.selectedRows containsObject:thisTag]) {
+        
+        [self.selectedRows removeObject:thisTag];
+ 
+    } else {
+        
+        [self.receiptToAdd addReceiptToTagObject:thisTag];
+        
+        [self.selectedRows addObject:thisTag];
+    }
+    
+    NSLog(@"%@", [thisTag tagToReceipt]);
+    
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+
+
 
 
 @end

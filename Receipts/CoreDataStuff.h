@@ -15,6 +15,7 @@
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @property (nonatomic) NSArray *fetchedTags;
+@property (nonatomic) NSArray *fetchedReceipts;
 
 +(instancetype)sharedInstance;
 -(NSArray *)fetchReceipts;

@@ -60,6 +60,22 @@ static NSString *const AddReceiptSegue = @"addReceipts";
     
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    
+    return [self.coreDataManager.fetchedTags count];
+    
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+        
+    Tag *tagSectionName = self.coreDataManager.fetchedTags[section];
+    
+    return tagSectionName.tagName;
+    
+}
+
 
 #pragma mark - Segues -
 

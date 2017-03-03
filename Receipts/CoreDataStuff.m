@@ -38,6 +38,10 @@
     
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Receipt"];
     arrayOfReceipts = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    
+
+    self.fetchedReceipts = arrayOfReceipts;
+    
     return arrayOfReceipts;
     
 }
@@ -73,5 +77,7 @@
     
     return arrayOfTags;
 }
+
+
 
 @end
