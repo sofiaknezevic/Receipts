@@ -10,7 +10,9 @@
 
 @interface CoreDataStuff()
 
-
+@property (nonatomic) Tag *personal;
+@property (nonatomic) Tag *business;
+@property (nonatomic) Tag *family;
 
 @end
 
@@ -18,8 +20,6 @@
 
 + (instancetype)sharedInstance
 {
-    
-    
     static CoreDataStuff *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -27,19 +27,17 @@
         
     });
     
-    
     return sharedInstance;
 }
 
 
 -(NSArray *)fetchReceipts {
     
-    NSArray *arrayOfReceipts = [NSArray new];
+    NSArray *arrayOfReceipts;
     
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Receipt"];
     arrayOfReceipts = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
     
-
     self.fetchedReceipts = arrayOfReceipts;
     
     return arrayOfReceipts;
@@ -48,7 +46,7 @@
 
 -(NSArray *)fetchTags {
     
-    NSArray *arrayOfTags;
+    NSArray *arrayOfTags = [[NSArray alloc] init];
     
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Tag"];
     arrayOfTags = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
@@ -57,16 +55,16 @@
         
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tag" inManagedObjectContext:self.managedObjectContext];
         
-        Tag *personal = [[Tag alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
-        personal.tagName = @"Personal";
+        self.personal = [[Tag alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+        self.personal.tagName = @"Personal";
         
-        Tag *family = [[Tag alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
-        family.tagName = @"Family";
+        self.family = [[Tag alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+        self.family.tagName = @"Family";
         
-        Tag *business = [[Tag alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
-        business.tagName = @"Business";
+        self.business = [[Tag alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+        self.business.tagName = @"Business";
         
-        arrayOfTags = @[personal, family, business];
+        arrayOfTags = @[self.personal, self.family, self.business];
         
         
         [self.managedObjectContext save:nil];
@@ -77,7 +75,6 @@
     
     return arrayOfTags;
 }
-
 
 
 @end

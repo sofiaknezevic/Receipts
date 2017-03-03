@@ -14,6 +14,7 @@
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *receiptsTableView;
+@property (nonatomic) NSMutableArray *taggedReceiptsArray;
 
 
 @end
@@ -26,6 +27,7 @@ static NSString *const AddReceiptSegue = @"addReceipts";
 {
     [super viewDidLoad];
     self.coreDataManager = [CoreDataStuff sharedInstance];
+    [self.coreDataManager fetchReceipts];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -45,7 +47,7 @@ static NSString *const AddReceiptSegue = @"addReceipts";
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return [[self.coreDataManager fetchReceipts]count];
+    return [self.coreDataManager.fetchedReceipts count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

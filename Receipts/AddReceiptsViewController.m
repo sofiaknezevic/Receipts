@@ -55,6 +55,8 @@ static NSString const *TagsIdentifier = @"tagCell";
     [self.receiptToAdd setValue:self.noteTF.text forKey:@"note"];
     [self.receiptToAdd setValue:self.receiptDP.date forKey:@"timeStamp"];
     
+    [self.receiptToAdd addReceiptToTag:self.selectedRows];
+    
     [self.coreDataManager.managedObjectContext save:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
     
@@ -100,8 +102,6 @@ static NSString const *TagsIdentifier = @"tagCell";
         
         [self.selectedRows addObject:thisTag];
     }
-    
-    NSLog(@"%@", [thisTag tagToReceipt]);
     
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
