@@ -15,6 +15,8 @@
 		5D19AEF61E68820F002479F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D19AEF51E68820F002479F7 /* Assets.xcassets */; };
 		5D19AEF91E68820F002479F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D19AEF71E68820F002479F7 /* LaunchScreen.storyboard */; };
 		5D19AF021E6888EA002479F7 /* AddReceiptsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D19AF011E6888EA002479F7 /* AddReceiptsViewController.m */; };
+		5D19AF051E68B433002479F7 /* ReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D19AF041E68B433002479F7 /* ReceiptTableViewCell.m */; };
+		5D19AF0E1E68D277002479F7 /* CoreDataStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D19AF0D1E68D277002479F7 /* CoreDataStuff.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,10 @@
 		5D19AEFA1E68820F002479F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D19AF001E6888EA002479F7 /* AddReceiptsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddReceiptsViewController.h; sourceTree = "<group>"; };
 		5D19AF011E6888EA002479F7 /* AddReceiptsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddReceiptsViewController.m; sourceTree = "<group>"; };
+		5D19AF031E68B433002479F7 /* ReceiptTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptTableViewCell.h; sourceTree = "<group>"; };
+		5D19AF041E68B433002479F7 /* ReceiptTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptTableViewCell.m; sourceTree = "<group>"; };
+		5D19AF0C1E68D277002479F7 /* CoreDataStuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStuff.h; sourceTree = "<group>"; };
+		5D19AF0D1E68D277002479F7 /* CoreDataStuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStuff.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,12 +69,9 @@
 		5D19AEE51E68820F002479F7 /* Receipts */ = {
 			isa = PBXGroup;
 			children = (
-				5D19AEE91E68820F002479F7 /* AppDelegate.h */,
-				5D19AEEA1E68820F002479F7 /* AppDelegate.m */,
-				5D19AEEC1E68820F002479F7 /* ViewController.h */,
-				5D19AEED1E68820F002479F7 /* ViewController.m */,
-				5D19AF001E6888EA002479F7 /* AddReceiptsViewController.h */,
-				5D19AF011E6888EA002479F7 /* AddReceiptsViewController.m */,
+				5D19AF0B1E68C85E002479F7 /* Model */,
+				5D19AF091E68C84F002479F7 /* Controller */,
+				5D19AF0A1E68C856002479F7 /* View */,
 				5D19AEEF1E68820F002479F7 /* Main.storyboard */,
 				5D19AEF51E68820F002479F7 /* Assets.xcassets */,
 				5D19AEF71E68820F002479F7 /* LaunchScreen.storyboard */,
@@ -85,6 +88,37 @@
 				5D19AEE71E68820F002479F7 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5D19AF091E68C84F002479F7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5D19AEEC1E68820F002479F7 /* ViewController.h */,
+				5D19AEED1E68820F002479F7 /* ViewController.m */,
+				5D19AF001E6888EA002479F7 /* AddReceiptsViewController.h */,
+				5D19AF011E6888EA002479F7 /* AddReceiptsViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		5D19AF0A1E68C856002479F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5D19AF031E68B433002479F7 /* ReceiptTableViewCell.h */,
+				5D19AF041E68B433002479F7 /* ReceiptTableViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		5D19AF0B1E68C85E002479F7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5D19AEE91E68820F002479F7 /* AppDelegate.h */,
+				5D19AEEA1E68820F002479F7 /* AppDelegate.m */,
+				5D19AF0C1E68D277002479F7 /* CoreDataStuff.h */,
+				5D19AF0D1E68D277002479F7 /* CoreDataStuff.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,6 +193,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D19AF051E68B433002479F7 /* ReceiptTableViewCell.m in Sources */,
+				5D19AF0E1E68D277002479F7 /* CoreDataStuff.m in Sources */,
 				5D19AEF41E68820F002479F7 /* Receipts.xcdatamodeld in Sources */,
 				5D19AF021E6888EA002479F7 /* AddReceiptsViewController.m in Sources */,
 				5D19AEEE1E68820F002479F7 /* ViewController.m in Sources */,

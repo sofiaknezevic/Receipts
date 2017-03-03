@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
+#import "CoreDataStuff.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +18,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+    CoreDataStuff *coreDataController = [CoreDataStuff sharedInstance];
+    coreDataController.managedObjectContext = self.persistentContainer.viewContext;
+    [coreDataController fetchTags];
     return YES;
 }
 
@@ -52,6 +57,8 @@
 
 #pragma mark - Core Data stack
 
+@synthesize managedObjectContext = _managedObjectContext;
+@synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentContainer = _persistentContainer;
 
 - (NSPersistentContainer *)persistentContainer {

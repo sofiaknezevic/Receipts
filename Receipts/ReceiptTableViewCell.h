@@ -1,5 +1,5 @@
 //
-//  AddReceiptsViewController.h
+//  ReceiptTableViewCell.h
 //  Receipts
 //
 //  Created by Sofia Knezevic on 2017-03-02.
@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
+#import "Receipts+CoreDataModel.h"
 #import "CoreDataStuff.h"
 
-@interface AddReceiptsViewController : UIViewController
+@interface ReceiptTableViewCell : UITableViewCell
 
 @property (nonatomic) CoreDataStuff *coreDataManager;
+
+- (void)configureCellWithReceipt:(Receipt *)receipt;
 
 @end

@@ -7,13 +7,32 @@
 //
 
 #import "ViewController.h"
+#import "AddReceiptsViewController.h"
+
+#import "ReceiptTableViewCell.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UITableView *receiptsTableView;
+
 
 @end
 
 @implementation ViewController
+
+static NSString *const AddReceiptSegue = @"addReceipts";
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.coreDataManager = [CoreDataStuff sharedInstance];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    [self.receiptsTableView reloadData];
+}
 
 - (IBAction)addReceiptButtonClicked:(id)sender {
     
@@ -21,18 +40,41 @@
     
 }
 
+#pragma mark - TableView -
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 5;
+    return [[self.coreDataManager fetchReceipts]count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.receiptsTableView dequeueReusableCellWithIdentifier:@"receiptCell" forIndexPath:indexPath];
+    ReceiptTableViewCell *cell = [self.receiptsTableView dequeueReusableCellWithIdentifier:@"receiptCell" forIndexPath:indexPath];
+    Receipt *newReceipt = [[self.coreDataManager fetchReceipts]objectAtIndex:indexPath.row];
+    
+    [cell configureCellWithReceipt:newReceipt];
     
     return cell;
     
     
 }
+
+
+#pragma mark - Segues -
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if ([segue.identifier isEqualToString:AddReceiptSegue]) {
+        
+        AddReceiptsViewController *addVC = [AddReceiptsViewController new];
+        addVC = segue.destinationViewController;
+        [self.receiptsTableView reloadData];
+        
+        
+    }
+    
+}
+
 @end

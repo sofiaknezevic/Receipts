@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#import "Receipts+CoreDataModel.h"
+#import "CoreDataStuff.h"
 
 @interface ViewController : UIViewController
 
+@property (nonatomic) CoreDataStuff *coreDataManager;
 
 @end
 
